@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class NewWordActivity extends AppCompatActivity {
 
-    final String KEY_USER_WORDELEMENT = "user_word_element";
+    public static final String KEY_USER_WORD = "user_word";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +29,16 @@ public class NewWordActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WordElement userWordElement = new WordElement();
-
-                userWordElement.setTitle(newWord.getText().toString());
-                userWordElement.setTranslate(newTranslate.getText().toString());
-                userWordElement.setDescription(newDescription.getText().toString());
 
                 Intent resultIntent = new Intent();
-                resultIntent.putExtra(KEY_USER_WORDELEMENT, userWordElement);
-                setResult(Activity.RESULT_OK);
+                WordElement userWord = new WordElement();
+
+                userWord.setTitle(newWord.getText().toString());
+                userWord.setTranslate(newTranslate.getText().toString());
+                userWord.setDescription(newDescription.getText().toString());
+
+                resultIntent.putExtra(KEY_USER_WORD, userWord);
+                setResult(Activity.RESULT_OK, resultIntent);
 
                 Toast.makeText(NewWordActivity.this, "Hmm... How interesting", Toast.LENGTH_SHORT).show();
                 finish();

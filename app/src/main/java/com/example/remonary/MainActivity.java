@@ -2,6 +2,7 @@ package com.example.remonary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,8 @@ import java.util.TreeMap;
 public class MainActivity extends AppCompatActivity {
 
     TreeMap<String, WordElement> userDictionary = new TreeMap<>();
+
+    public static final int RC_ADDNEWWORD = 1030;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent newWordIntent = new Intent(MainActivity.this, NewWordActivity.class);
-                startActivity(newWordIntent);
+                startActivityForResult(newWordIntent, RC_ADDNEWWORD);
             }
         });
 
@@ -63,5 +66,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == RC_ADDNEWWORD && resultCode == Activity.RESULT_OK) {
+            WordElement userWord = (WordElement) data.getExtras().get(NewWordActivity.KEY_USER_WORD);
+
+            userDictionary.put(userWord.getTitle(), userWord);
+        }else super.onActivityResult(requestCode, resultCode, data);
     }
 }
