@@ -14,10 +14,6 @@ public class MainActivity extends AppCompatActivity {
 
     TreeMap<String, WordElement> userDictionary = new TreeMap<>();
 
-    String KEY_USER_WORD = "key_user_word";
-    String KEY_USER_TRANSLATE = "key_user_translate";
-    String KEY_USER_DESCRIPTION = "key_user_description";
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
