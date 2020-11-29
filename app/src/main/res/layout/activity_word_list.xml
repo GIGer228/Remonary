@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".WordListActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dictionary_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:padding="24dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
