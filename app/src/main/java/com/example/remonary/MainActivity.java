@@ -14,10 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
     TreeMap<String, WordElement> userDictionary = new TreeMap<>();
 
-    String KEY_USER_WORD = "key_user_word";
-    String KEY_USER_TRANSLATE = "key_user_translate";
-    String KEY_USER_DESCRIPTION = "key_user_description";
-    
+    String KEY_USER_WORDELEMENT = "key_user_element";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent newWordIntent = new Intent(MainActivity.this, NewWordActivity.class);
+                newWordIntent.putExtra(KEY_USER_WORDELEMENT, new WordElement());
                 startActivity(newWordIntent);
             }
         });
