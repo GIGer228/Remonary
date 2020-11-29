@@ -26,10 +26,12 @@ public class NewWordActivity extends AppCompatActivity {
         Button addButton = findViewById(R.id.add_word_button);
         Button closeButton = findViewById(R.id.close_button);
 
+        final boolean hasTitle = !newWord.getText().toString().equals("");
+        final boolean hasTranslate = !newTranslate.getText().toString().equals("");
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(hasTitle && hasTranslate){
                 Intent resultIntent = new Intent();
                 WordElement userWord = new WordElement();
 
@@ -42,6 +44,7 @@ public class NewWordActivity extends AppCompatActivity {
 
                 Toast.makeText(NewWordActivity.this, "Hmm... How interesting", Toast.LENGTH_SHORT).show();
                 finish();
+                }else Toast.makeText(NewWordActivity.this, "Nope, fill two first lines", Toast.LENGTH_SHORT).show();
             }
         });
 
