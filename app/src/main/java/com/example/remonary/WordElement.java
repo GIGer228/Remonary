@@ -1,10 +1,15 @@
 package com.example.remonary;
 
-public class WordElement {
+import java.io.Serializable;
+
+public class WordElement implements Serializable {
 
     String title = "";
     String translate = "";
     String description = "";
+
+    public WordElement() {
+    }
 
     public WordElement(String title, String translate, String description) {
         this.title = title;
