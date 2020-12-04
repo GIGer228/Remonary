@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.TreeMap;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
     TreeMap<String, WordElement> userDictionary = new TreeMap<>();
 
     public static final int RC_ADDNEWWORD = 1030;
+    public static final int RC_SEEDICTIONARY = 1090;
+
+    public static final String KEY_USERDATA = "user_data";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
         dictionaryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent dictionaryIntent = new Intent(MainActivity.this, DictionaryActivity.class);
+                dictionaryIntent.putExtra(KEY_USERDATA, (Serializable) userDictionary);
+                startActivityForResult(dictionaryIntent, RC_SEEDICTIONARY);
             }
         });
 
@@ -73,6 +79,9 @@ public class MainActivity extends AppCompatActivity {
             WordElement userWord = (WordElement) data.getExtras().get(NewWordActivity.KEY_USER_WORD);
 
             userDictionary.put(userWord.getTitle(), userWord);
-        }else super.onActivityResult(requestCode, resultCode, data);
+        }else
+            if (requestCode == RC_SEEDICTIONARY && resultCode == Activity.RESULT_OK){
+
+            }else super.onActivityResult(requestCode, resultCode, data);
     }
 }
