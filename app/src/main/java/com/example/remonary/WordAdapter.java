@@ -13,6 +13,11 @@ import java.util.List;
 public class WordAdapter extends RecyclerView.Adapter<WordViewHolder> {
 
     private List<WordElement> items = Collections.emptyList();
+    private final WordAdapterCallbacks callbacks;
+
+    public WordAdapter(WordAdapterCallbacks callbacks) {
+        this.callbacks = callbacks;
+    }
 
     @NonNull
     @Override
