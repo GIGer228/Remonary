@@ -10,7 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Random;
 public class NewWordActivity extends AppCompatActivity {
+
+    private Random random = new Random();
 
     public static final String KEY_USER_WORD = "user_word";
 
@@ -33,7 +36,7 @@ public class NewWordActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(hasTitle && hasTranslate){
                 Intent resultIntent = new Intent();
-                WordElement userWord = new WordElement();
+                WordElement userWord = new WordElement((long) random.nextLong()*34/random.nextInt(5));
 
                 userWord.setTitle(newWord.getText().toString());
                 userWord.setTranslate(newTranslate.getText().toString());
