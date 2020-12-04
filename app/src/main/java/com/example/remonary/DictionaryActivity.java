@@ -18,6 +18,8 @@ public class DictionaryActivity extends AppCompatActivity implements WordAdapter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_list);
 
+        dictionary = (List<WordElement>) getIntent().getExtras().get(MainActivity.KEY_USERDATA);    //it's bugged
+
         adapter = new WordAdapter(this);
 
         RecyclerView wordRecycler = findViewById(R.id.dictionary_recycler);
