@@ -4,9 +4,10 @@ import java.io.Serializable;
 
 public class WordElement implements Serializable {
 
-    String title = "";
-    String translate = "";
-    String description = "";
+    long id;
+    String title;
+    String translate;
+    String description;
 
     public WordElement() {
     }
