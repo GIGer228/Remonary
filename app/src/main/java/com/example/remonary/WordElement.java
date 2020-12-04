@@ -12,7 +12,8 @@ public class WordElement implements Serializable {
     public WordElement() {
     }
 
-    public WordElement(String title, String translate, String description) {
+    public WordElement(long id, String title, String translate, String description) {
+        this.id = id;
         this.title = title;
         this.translate = translate;
         this.description = description;
@@ -28,6 +29,7 @@ public class WordElement implements Serializable {
         this.description = description;
     }
 
+    public long getId(){ return id; }
     public String getTitle() {
         return title;
     }
@@ -45,15 +47,18 @@ public class WordElement implements Serializable {
 
         WordElement that = (WordElement) o;
 
-        if (!title.equals(that.title)) return false;
-        if (!translate.equals(that.translate)) return false;
+        if (id != that.id) return false;
+        if (title != null ? !title.equals(that.title) : that.title != null) return false;
+        if (translate != null ? !translate.equals(that.translate) : that.translate != null)
+            return false;
         return description != null ? description.equals(that.description) : that.description == null;
     }
 
     @Override
     public int hashCode() {
-        int result = title.hashCode();
-        result = 31 * result + translate.hashCode();
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (translate != null ? translate.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }
