@@ -37,7 +37,7 @@ public class NewWordActivity extends AppCompatActivity {
 
                 if(hasTitle && hasTranslate){
                 Intent resultIntent = new Intent();
-                WordElement userWord = new WordElement((long) random.nextLong()*34/random.nextInt(5));
+                WordElement userWord = new WordElement((long) random.nextLong()*34/random.nextLong());
 
                 userWord.setTitle(newWord.getText().toString());
                 userWord.setTranslate(newTranslate.getText().toString());
