@@ -12,12 +12,22 @@ public class WordViewHolder extends RecyclerView.ViewHolder {
     private TextView wordTranslate;
     private TextView wordDescription;
 
-    public WordViewHolder(@NonNull View itemView) {
+    public WordViewHolder(@NonNull View itemView, @NonNull final ViewHolderAction onItemClick) {
         super(itemView);
 
         wordTitle = itemView.findViewById(R.id.word_title);
         wordTranslate = itemView.findViewById(R.id.word_translate);
         wordDescription = itemView.findViewById(R.id.word_description);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = getAdapterPosition();
+                if(position != RecyclerView.NO_POSITION){
+                    onItemClick.action(position);
+                }
+            }
+        });
     }
 
     public void bind(WordElement word){
