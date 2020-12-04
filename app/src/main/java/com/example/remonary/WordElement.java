@@ -12,6 +12,10 @@ public class WordElement implements Serializable {
     public WordElement() {
     }
 
+    public WordElement(long id){
+        this.id = id;
+    }
+
     public WordElement(long id, String title, String translate, String description) {
         this.id = id;
         this.title = title;
