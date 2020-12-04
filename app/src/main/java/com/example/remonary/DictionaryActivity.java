@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 import java.util.List;
 
-public class WordListActivity extends AppCompatActivity implements WordAdapterCallbacks{
+public class DictionaryActivity extends AppCompatActivity implements WordAdapterCallbacks{
 
     private WordAdapter adapter;
     private List<WordElement> dictionary;
