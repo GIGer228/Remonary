@@ -29,11 +29,12 @@ public class NewWordActivity extends AppCompatActivity {
         Button addButton = findViewById(R.id.add_word_button);
         Button closeButton = findViewById(R.id.close_button);
 
-        final boolean hasTitle = !newWord.getText().toString().equals("");
-        final boolean hasTranslate = !newTranslate.getText().toString().equals("");
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean hasTitle = !newWord.getText().toString().equals("");
+                boolean hasTranslate = !newTranslate.getText().toString().equals("");
+
                 if(hasTitle && hasTranslate){
                 Intent resultIntent = new Intent();
                 WordElement userWord = new WordElement((long) random.nextLong()*34/random.nextInt(5));
