@@ -31,11 +31,11 @@ public class WordEditingActivity extends AppCompatActivity {
 
         final TextView activityMessage = findViewById(R.id.activity_message);
 
-        final EditText newWord = findViewById(R.id.new_word_text);
-        final EditText newTranslate = findViewById(R.id.new_translation_text);
-        final EditText newDescription = findViewById(R.id.new_description_text);
+        final EditText wordTitle = findViewById(R.id.new_word_text);
+        final EditText wordTranslate = findViewById(R.id.new_translation_text);
+        final EditText wordDescription = findViewById(R.id.new_description_text);
 
-        Button addButton = findViewById(R.id.add_word_button);
+        Button confirmButton = findViewById(R.id.add_word_button);
         Button closeButton = findViewById(R.id.close_button);
 
         launchCode = getIntent().getExtras().getInt("launch_code");
@@ -43,23 +43,23 @@ public class WordEditingActivity extends AppCompatActivity {
         switch(launchCode){
             case 0:
                 activityMessage.setText(getString(R.string.add_word_line));
-                addButton.setText(getString(R.string.add_button_text));
+                confirmButton.setText(getString(R.string.add_button_text));
 
-                addButton.setOnClickListener(new View.OnClickListener() {
+                confirmButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean hasTitle = !newWord.getText().toString().equals("");
-                        boolean hasTranslate = !newTranslate.getText().toString().equals("");
+                        boolean hasTitle = !wordTitle.getText().toString().equals("");
+                        boolean hasTranslate = !wordTranslate.getText().toString().equals("");
 
                         if(hasTitle && hasTranslate){
                             Intent resultIntent = new Intent();
-                            WordElement userWord = new WordElement((long) random.nextLong()*34/random.nextLong());
+                            WordElement newWord = new WordElement((long) random.nextLong()*34/random.nextLong());
 
-                            userWord.setTitle(newWord.getText().toString());
-                            userWord.setTranslate(newTranslate.getText().toString());
-                            userWord.setDescription(newDescription.getText().toString());
+                            newWord.setTitle(wordTitle.getText().toString());
+                            newWord.setTranslate(wordTranslate.getText().toString());
+                            newWord.setDescription(wordDescription.getText().toString());
 
-                            resultIntent.putExtra(KEY_USER_WORD, userWord);
+                            resultIntent.putExtra(KEY_USER_WORD, newWord);
                             setResult(Activity.RESULT_OK, resultIntent);
 
                             Toast.makeText(WordEditingActivity.this, "Hmm... How interesting", Toast.LENGTH_SHORT).show();
@@ -79,6 +79,39 @@ public class WordEditingActivity extends AppCompatActivity {
                 });
                 break;
             case 1:
+                activityMessage.setText(getString(R.string.edit_word_line));
+                confirmButton.setText(getString(R.string.edit_button_text));
+
+                confirmButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        boolean hasTitle = !wordTitle.getText().toString().equals("");
+                        boolean hasTranslate = !wordTranslate.getText().toString().equals("");
+
+                        if(hasTitle && hasTranslate){
+                            Intent resultIntent = new Intent();
+                            WordElement userEdit = new WordElement((long) random.nextLong()*34/random.nextLong());
+
+                            userEdit.setTitle(wordTitle.getText().toString());
+                            userEdit.setTranslate(wordTranslate.getText().toString());
+                            userEdit.setDescription(wordDescription.getText().toString());
+
+                            resultIntent.putExtra(KEY_USER_EDIT, userEdit);
+                            setResult(Activity.RESULT_OK, resultIntent);
+
+                            Toast.makeText(WordEditingActivity.this, "Wha.. New word?", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }else Toast.makeText(WordEditingActivity.this, "Nope, fill two first lines", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                closeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setResult(Activity.RESULT_CANCELED);
+                        finish();
+                    }
+                });
 
                 break;
         }
