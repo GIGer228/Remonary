@@ -2,7 +2,7 @@ package com.example.remonary;
 
 import java.io.Serializable;
 
-public class WordElement implements Serializable, Comparable {
+public class WordElement implements Serializable{
 
     long id;
     String title;
@@ -65,10 +65,5 @@ public class WordElement implements Serializable, Comparable {
         result = 31 * result + (translate != null ? translate.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        return 0;
     }
 }

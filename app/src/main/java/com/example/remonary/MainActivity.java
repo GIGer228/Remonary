@@ -1,20 +1,24 @@
 package com.example.remonary;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.Serializable;
-import java.util.TreeMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    TreeMap<String, WordElement> userDictionary = new TreeMap<>();
+    List<WordElement> userDictionary = new ArrayList<>();
+    WordComparator wordComparator;
 
     public static final int RC_ADDNEWWORD = 1030;
     public static final int RC_SEEDICTIONARY = 1090;
@@ -33,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         Button trainButton = findViewById(R.id.train_button);
         Button optionsButton = findViewById(R.id.options_button);
         Button exitButton = findViewById(R.id.exit_button);
+
+        wordComparator = new WordComparator();
 
         newWordButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,12 +79,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == RC_ADDNEWWORD && resultCode == Activity.RESULT_OK) {
             WordElement userWord = (WordElement) data.getExtras().get(NewWordActivity.KEY_USER_WORD);
 
-            userDictionary.put(userWord.getTitle(), userWord);
+            userDictionary.add(userWord);
+            userDictionary.sort(wordComparator);
         }else
             if (requestCode == RC_SEEDICTIONARY && resultCode == Activity.RESULT_OK){
 
