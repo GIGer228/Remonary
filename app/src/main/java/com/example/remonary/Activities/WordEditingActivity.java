@@ -14,7 +14,7 @@ import com.example.remonary.DataSet.WordElement;
 import com.example.remonary.R;
 
 import java.util.Random;
-public class NewWordActivity extends AppCompatActivity {
+public class WordEditingActivity extends AppCompatActivity {
 
     private Random random = new Random();
 
@@ -49,9 +49,9 @@ public class NewWordActivity extends AppCompatActivity {
                 resultIntent.putExtra(KEY_USER_WORD, userWord);
                 setResult(Activity.RESULT_OK, resultIntent);
 
-                Toast.makeText(NewWordActivity.this, "Hmm... How interesting", Toast.LENGTH_SHORT).show();
+                Toast.makeText(WordEditingActivity.this, "Hmm... How interesting", Toast.LENGTH_SHORT).show();
                 finish();
-                }else Toast.makeText(NewWordActivity.this, "Nope, fill two first lines", Toast.LENGTH_SHORT).show();
+                }else Toast.makeText(WordEditingActivity.this, "Nope, fill two first lines", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -60,7 +60,7 @@ public class NewWordActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setResult(Activity.RESULT_CANCELED);
 
-                Toast.makeText(NewWordActivity.this, "Not funny. *gets anger*", Toast.LENGTH_SHORT).show();
+                Toast.makeText(WordEditingActivity.this, "Not funny. *gets anger*", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
