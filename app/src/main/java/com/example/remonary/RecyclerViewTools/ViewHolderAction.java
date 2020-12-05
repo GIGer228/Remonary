@@ -1,4 +1,4 @@
-package com.example.remonary;
+package com.example.remonary.RecyclerViewTools;
 
 public interface ViewHolderAction {
 

@@ -1,10 +1,13 @@
-package com.example.remonary;
+package com.example.remonary.RecyclerViewTools;
 
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.remonary.R;
+import com.example.remonary.DataSet.WordElement;
 
 public class WordViewHolder extends RecyclerView.ViewHolder {
 

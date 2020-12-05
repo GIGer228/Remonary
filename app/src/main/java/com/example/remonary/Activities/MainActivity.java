@@ -1,4 +1,4 @@
-package com.example.remonary;
+package com.example.remonary.Activities;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.remonary.DataSet.WordComparator;
+import com.example.remonary.DataSet.WordElement;
+import com.example.remonary.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;

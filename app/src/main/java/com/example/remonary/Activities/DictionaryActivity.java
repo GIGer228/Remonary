@@ -1,4 +1,4 @@
-package com.example.remonary;
+package com.example.remonary.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -6,9 +6,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.example.remonary.DataSet.WordElement;
+import com.example.remonary.R;
+import com.example.remonary.RecyclerViewTools.WordAdapter;
+import com.example.remonary.RecyclerViewTools.WordAdapterCallbacks;
+
 import java.util.List;
 
-public class DictionaryActivity extends AppCompatActivity implements WordAdapterCallbacks{
+public class DictionaryActivity extends AppCompatActivity implements WordAdapterCallbacks {
 
     private WordAdapter adapter;
     private List<WordElement> dictionary;

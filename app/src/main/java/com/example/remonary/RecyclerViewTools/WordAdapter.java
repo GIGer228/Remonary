@@ -1,4 +1,4 @@
-package com.example.remonary;
+package com.example.remonary.RecyclerViewTools;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +6,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.remonary.R;
+import com.example.remonary.DataSet.WordElement;
 
 import java.util.Collections;
 import java.util.List;

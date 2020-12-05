@@ -1,4 +1,4 @@
-package com.example.remonary;
+package com.example.remonary.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.remonary.DataSet.WordElement;
+import com.example.remonary.R;
 
 import java.util.Random;
 public class NewWordActivity extends AppCompatActivity {
