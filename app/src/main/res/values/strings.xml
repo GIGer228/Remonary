@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Remonary</string>
+    <string name="add_word_line">Wanna add something new?</string>
+    <string name="add_button_text">Yes, add this pls:)</string>
 </resources>
