@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int RC_SEEDICTIONARY = 1090;
 
     public static final String KEY_USERDATA = "user_data";
+    public static final String KEY_LAUNCHCODE = "launch_code";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent newWordIntent = new Intent(MainActivity.this, WordEditingActivity.class);
+                newWordIntent.putExtra(KEY_LAUNCHCODE, 0);
                 startActivityForResult(newWordIntent, RC_ADDNEWWORD);
             }
         });
