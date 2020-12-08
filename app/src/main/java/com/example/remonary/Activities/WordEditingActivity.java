@@ -82,6 +82,13 @@ public class WordEditingActivity extends AppCompatActivity {
                 activityMessage.setText(getString(R.string.edit_word_line));
                 confirmButton.setText(getString(R.string.edit_button_text));
 
+                WordElement clickWord = (WordElement) getIntent().getExtras().get(DictionaryActivity.KEY_CLICKWORD);
+
+                assert clickWord != null;
+                wordTitle.setText(clickWord.getTitle());
+                wordTranslate.setText(clickWord.getTranslate());
+                wordDescription.setText((clickWord.getDescription()));
+
                 confirmButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
