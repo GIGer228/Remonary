@@ -21,6 +21,7 @@ public class DictionaryActivity extends AppCompatActivity implements WordAdapter
     private List<WordElement> dictionary;
 
     public static final int RC_EDITWORD = 1035;
+    public static final String KEY_CLICKWORD = "click_word";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class DictionaryActivity extends AppCompatActivity implements WordAdapter
     public void onWordClick(WordElement word) {
         Intent editWordIntent = new Intent(DictionaryActivity.this, WordEditingActivity.class);
         editWordIntent.putExtra(MainActivity.KEY_LAUNCHCODE, 1);
+        editWordIntent.putExtra(KEY_CLICKWORD, word);
         startActivityForResult(editWordIntent, RC_EDITWORD);
     }
 
