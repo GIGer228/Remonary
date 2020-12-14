@@ -50,8 +50,13 @@ public class DictionaryActivity extends AppCompatActivity implements WordAdapter
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == RC_EDITWORD && resultCode == Activity.RESULT_OK) {
-                                                                                                    //replace old word with user_edit
+        if(requestCode == RC_EDITWORD && resultCode == Activity.RESULT_OK) {                        //replace old word with user_edit
+            WordElement editSource = (WordElement) data.getExtras().get(WordEditingActivity.KEY_EDIT_SOURCE);
+            WordElement userEdit = (WordElement) data.getExtras().get(WordEditingActivity.KEY_USER_EDIT);
+
+            dictionary.remove(editSource);
+            dictionary.add(userEdit);
+            adapter.notifyDataSetChanged();
         }else super.onActivityResult(requestCode, resultCode, data);
     }
 }
