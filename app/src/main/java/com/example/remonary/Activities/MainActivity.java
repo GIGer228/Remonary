@@ -21,13 +21,14 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    List<WordElement> userDictionary = new ArrayList<>();
-    WordComparator wordComparator;
+    private List<WordElement> userDictionary = new ArrayList<>();
+    private WordComparator wordComparator;
 
     public static final int RC_ADDNEWWORD = 1030;
     public static final int RC_SEEDICTIONARY = 1090;
 
     public static final String KEY_USERDATA = "user_data";
+    public static final String KEY_LAUNCHCODE = "launch_code";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         newWordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent newWordIntent = new Intent(MainActivity.this, NewWordActivity.class);
+                Intent newWordIntent = new Intent(MainActivity.this, WordEditingActivity.class);
+                newWordIntent.putExtra(KEY_LAUNCHCODE, 0);
                 startActivityForResult(newWordIntent, RC_ADDNEWWORD);
             }
         });
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == RC_ADDNEWWORD && resultCode == Activity.RESULT_OK) {
-            WordElement userWord = (WordElement) data.getExtras().get(NewWordActivity.KEY_USER_WORD);
+            WordElement userWord = (WordElement) data.getExtras().get(WordEditingActivity.KEY_NEW_WORD);
 
             userDictionary.add(userWord);
             userDictionary.sort(wordComparator);
