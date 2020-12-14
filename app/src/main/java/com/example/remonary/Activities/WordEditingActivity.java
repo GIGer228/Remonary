@@ -17,8 +17,9 @@ import com.example.remonary.R;
 import java.util.Random;
 public class WordEditingActivity extends AppCompatActivity {
 
-    public static final String KEY_USER_WORD = "user_word";
+    public static final String KEY_NEW_WORD = "new_word";
     public static final String KEY_USER_EDIT = "user_edit";
+    public static final String KEY_EDIT_SOURCE = "edit_source";
 
     private int launchCode;
 
@@ -59,7 +60,7 @@ public class WordEditingActivity extends AppCompatActivity {
                             newWord.setTranslate(wordTranslate.getText().toString());
                             newWord.setDescription(wordDescription.getText().toString());
 
-                            resultIntent.putExtra(KEY_USER_WORD, newWord);
+                            resultIntent.putExtra(KEY_NEW_WORD, newWord);
                             setResult(Activity.RESULT_OK, resultIntent);
 
                             Toast.makeText(WordEditingActivity.this, "Hmm... How interesting", Toast.LENGTH_SHORT).show();
@@ -82,9 +83,8 @@ public class WordEditingActivity extends AppCompatActivity {
                 activityMessage.setText(getString(R.string.edit_word_line));
                 confirmButton.setText(getString(R.string.edit_button_text));
 
-                WordElement clickWord = (WordElement) getIntent().getExtras().get(DictionaryActivity.KEY_CLICKWORD);
+                final WordElement clickWord = (WordElement) getIntent().getExtras().get(DictionaryActivity.KEY_CLICKWORD);
 
-                assert clickWord != null;
                 wordTitle.setText(clickWord.getTitle());
                 wordTranslate.setText(clickWord.getTranslate());
                 wordDescription.setText((clickWord.getDescription()));
@@ -103,6 +103,7 @@ public class WordEditingActivity extends AppCompatActivity {
                             userEdit.setTranslate(wordTranslate.getText().toString());
                             userEdit.setDescription(wordDescription.getText().toString());
 
+                            resultIntent.putExtra(KEY_EDIT_SOURCE, clickWord);
                             resultIntent.putExtra(KEY_USER_EDIT, userEdit);
                             setResult(Activity.RESULT_OK, resultIntent);
 
