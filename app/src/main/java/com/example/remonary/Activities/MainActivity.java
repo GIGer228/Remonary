@@ -1,11 +1,10 @@
 package com.example.remonary.Activities;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,8 +20,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<WordElement> userDictionary = new ArrayList<>();
-    private WordComparator wordComparator;
+    private static List<WordElement> userDictionary = new ArrayList<>();
+    private static WordComparator wordComparator;
 
     public static final int RC_ADDNEWWORD = 1030;
     public static final int RC_SEEDICTIONARY = 1090;
@@ -85,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    @SuppressLint("NewApi")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == RC_ADDNEWWORD && resultCode == Activity.RESULT_OK) {
@@ -95,7 +94,15 @@ public class MainActivity extends AppCompatActivity {
             userDictionary.sort(wordComparator);
         }else
             if (requestCode == RC_SEEDICTIONARY && resultCode == Activity.RESULT_OK){
-
+                List<WordElement> editedDictionary = (List<WordElement>) data.getExtras().get(KEY_USERDATA);
+                userDictionary = editedDictionary;
+                userDictionary.sort(wordComparator);
             }else super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @SuppressLint("NewApi")
+    public static void updateDictionary(List<WordElement> newData){
+        userDictionary = newData;
+        userDictionary.sort(wordComparator);
     }
 }
