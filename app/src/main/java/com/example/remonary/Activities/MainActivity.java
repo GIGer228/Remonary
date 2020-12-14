@@ -21,8 +21,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    List<WordElement> userDictionary = new ArrayList<>();
-    WordComparator wordComparator;
+    private List<WordElement> userDictionary = new ArrayList<>();
+    private WordComparator wordComparator;
 
     public static final int RC_ADDNEWWORD = 1030;
     public static final int RC_SEEDICTIONARY = 1090;
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == RC_ADDNEWWORD && resultCode == Activity.RESULT_OK) {
-            WordElement userWord = (WordElement) data.getExtras().get(WordEditingActivity.KEY_USER_WORD);
+            WordElement userWord = (WordElement) data.getExtras().get(WordEditingActivity.KEY_NEW_WORD);
 
             userDictionary.add(userWord);
             userDictionary.sort(wordComparator);
