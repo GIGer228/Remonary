@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.remonary.R;
@@ -52,7 +53,9 @@ public class WordAdapter extends RecyclerView.Adapter<WordViewHolder> {
     }
 
     public void setItems(List<WordElement> items) {
+        WordDiffCallback callbacks = new WordDiffCallback(this.items, items);
+        DiffUtil.DiffResult result = DiffUtil.calculateDiff(callbacks);
         this.items = items;
-        notifyDataSetChanged();
+        result.dispatchUpdatesTo(this);
     }
 }
