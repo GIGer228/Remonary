@@ -6,11 +6,11 @@ import com.example.remonary.DataSet.WordElement;
 
 import java.util.List;
 
-public class WordDffCallback extends DiffUtil.Callback {
+public class WordDiffCallback extends DiffUtil.Callback {
 
     private List<WordElement> oldWords, newWords;
 
-    public WordDffCallback(List<WordElement> oldWords, List<WordElement> newWords) {
+    public WordDiffCallback(List<WordElement> oldWords, List<WordElement> newWords) {
         this.oldWords = oldWords;
         this.newWords = newWords;
     }

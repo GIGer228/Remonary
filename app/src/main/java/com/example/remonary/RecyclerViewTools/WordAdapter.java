@@ -52,6 +52,7 @@ public class WordAdapter extends RecyclerView.Adapter<WordViewHolder> {
     }
 
     public void setItems(List<WordElement> items) {
+        WordDiffCallback
         this.items = items;
         notifyDataSetChanged();
     }
