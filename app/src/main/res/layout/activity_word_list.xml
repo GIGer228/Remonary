@@ -13,4 +13,13 @@
         android:clipToPadding="false"
         android:padding="24dp" />
 
+    <EditText
+        android:id="@+id/empty_message"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Sorry, there is nothing.\n\nTry to add some words from main screen"
+        android:textAlignment="center"
+        android:layout_gravity="center_horizontal"
+        android:visibility="visible"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
