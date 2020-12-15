@@ -20,14 +20,14 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static List<WordElement> userDictionary = new ArrayList<>();
-    private static WordComparator wordComparator;
+    private static List<WordElement> userDictionary = new ArrayList<>();//all the words added by user
+    private static WordComparator wordComparator;//dictionary sorter
 
-    public static final int RC_ADDNEWWORD = 1030;
-    public static final int RC_SEEDICTIONARY = 1090;
+    public static final int RC_ADDNEWWORD = 1030;//EditWordActivity's request code (add words)
+    public static final int RC_SEEDICTIONARY = 1090;//DictionaryActivity's request code (show words)
 
-    public static final String KEY_USERDATA = "user_data";
-    public static final String KEY_LAUNCHCODE = "launch_code";
+    public static final String KEY_USERDATA = "user_data";//String key for delivering words between Activities
+    public static final String KEY_LAUNCHCODE = "launch_code";//String key for EditActivity launch code (add/edit word)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent newWordIntent = new Intent(MainActivity.this, WordEditingActivity.class);
-                newWordIntent.putExtra(KEY_LAUNCHCODE, 0);
-                startActivityForResult(newWordIntent, RC_ADDNEWWORD);
+                newWordIntent.putExtra(KEY_LAUNCHCODE, 0);//EditWordActivity's add word case
+                startActivityForResult(newWordIntent, RC_ADDNEWWORD);//launch EditWordActivity
             }
         });
 
@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent dictionaryIntent = new Intent(MainActivity.this, DictionaryActivity.class);
-                dictionaryIntent.putExtra(KEY_USERDATA, (Serializable) userDictionary);
-                startActivityForResult(dictionaryIntent, RC_SEEDICTIONARY);
+                dictionaryIntent.putExtra(KEY_USERDATA, (Serializable) userDictionary);//pack userDictionary
+                startActivityForResult(dictionaryIntent, RC_SEEDICTIONARY);//launch DictionaryActivity with userDictionary
             }
         });
 
@@ -88,21 +88,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == RC_ADDNEWWORD && resultCode == Activity.RESULT_OK) {
-            WordElement userWord = (WordElement) data.getExtras().get(WordEditingActivity.KEY_NEW_WORD);
+            WordElement userWord = (WordElement) data.getExtras().get(WordEditingActivity.KEY_NEW_WORD);//get new word from EditWordActivity
 
-            userDictionary.add(userWord);
-            userDictionary.sort(wordComparator);
+            userDictionary.add(userWord);//add new word to userDictionary
+            userDictionary.sort(wordComparator);//sort new word
         }else
             if (requestCode == RC_SEEDICTIONARY && resultCode == Activity.RESULT_OK){
-                List<WordElement> editedDictionary = (List<WordElement>) data.getExtras().get(KEY_USERDATA);
-                userDictionary = editedDictionary;
-                userDictionary.sort(wordComparator);
+                List<WordElement> editedDictionary = (List<WordElement>) data.getExtras().get(KEY_USERDATA);//get edited words from DictionaryActivity
+                userDictionary = editedDictionary;//set new Dictionary
+                userDictionary.sort(wordComparator);////sort new Dictionary
             }else super.onActivityResult(requestCode, resultCode, data);
     }
 
     @SuppressLint("NewApi")
-    public static void updateDictionary(List<WordElement> newData){
-        userDictionary = newData;
-        userDictionary.sort(wordComparator);
+    public static void updateDictionary(List<WordElement> newData){//updating userDictionary from other Activities
+        userDictionary = newData;//only for deleting in DictionaryActivity
+        userDictionary.sort(wordComparator);//do not use it anywhere
     }
 }
