@@ -15,7 +15,7 @@ import com.example.remonary.DataSet.WordElement;
 import com.example.remonary.R;
 
 import java.util.Random;
-public class WordEditingActivity extends AppCompatActivity {
+public class WordActivity extends AppCompatActivity {
 
     public static final String KEY_NEW_WORD = "new_word";                                           //String key for delivering new word to MainActivity(userDictionary)
     public static final String KEY_USER_EDIT = "user_edit";                                         //String key for delivering edited word to DictionaryActivity
@@ -30,7 +30,7 @@ public class WordEditingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_editing);
 
-        final TextView activityMessage = findViewById(R.id.activity_message);                       //EditingWordActivity welcome line
+        final TextView activityMessage = findViewById(R.id.activity_message);                       //WordActivity welcome line
 
         final EditText wordTitle = findViewById(R.id.new_word_text);
         final EditText wordTranslate = findViewById(R.id.new_translation_text);
@@ -64,9 +64,9 @@ public class WordEditingActivity extends AppCompatActivity {
                             resultIntent.putExtra(KEY_NEW_WORD, newWord);                           //pack new word
                             setResult(Activity.RESULT_OK, resultIntent);
 
-                            Toast.makeText(WordEditingActivity.this, "Hmm... How interesting", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(WordActivity.this, "Hmm... How interesting", Toast.LENGTH_SHORT).show();
                             finish();                                                               //human imitation. Just kidding
-                        }else Toast.makeText(WordEditingActivity.this, "Nope, fill two first lines", Toast.LENGTH_SHORT).show();
+                        }else Toast.makeText(WordActivity.this, "Nope, fill two first lines", Toast.LENGTH_SHORT).show();
                     }
                 });                                                                                 //another human imitation
 
@@ -74,13 +74,12 @@ public class WordEditingActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         setResult(Activity.RESULT_CANCELED);
-
-                        Toast.makeText(WordEditingActivity.this, "Not funny. *gets anger*", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(WordActivity.this, "Not funny. *gets anger*", Toast.LENGTH_SHORT).show();
                         finish();                                                                   //just another human imitation UwU
                     }
                 });
                 break;
-            case 1:                                                                                 //launchCode from DictionaryActivity (edit existing word)
+            case 1:                                                                                 //launchCode from DictionaryActivity(edit existing word)
                 activityMessage.setText(getString(R.string.edit_word_line));
                 confirmButton.setText(getString(R.string.edit_button_text));
 
@@ -101,7 +100,7 @@ public class WordEditingActivity extends AppCompatActivity {
                             Intent resultIntent = new Intent();
 
                             WordElement userEdit = new WordElement();                               //create new word
-                            userEdit.setId((long)random.nextLong()*34/random.nextLong());           //set random Id. Make it better
+                            userEdit.setId((long)random.nextLong()*34/random.nextLong());           //set random Id(make it better)
 
                             userEdit.setTitle(wordTitle.getText().toString());                      //get edited data
                             userEdit.setTranslate(wordTranslate.getText().toString());              //and set it
@@ -111,9 +110,9 @@ public class WordEditingActivity extends AppCompatActivity {
                             resultIntent.putExtra(KEY_USER_EDIT, userEdit);                         //and edited clicked word
                             setResult(Activity.RESULT_OK, resultIntent);                            //and deliver it back
 
-                            Toast.makeText(WordEditingActivity.this, "Wha.. New word?", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(WordActivity.this, "Wha.. New word?", Toast.LENGTH_SHORT).show();
                             finish();                                                               //human imitation. Just kidding
-                        }else Toast.makeText(WordEditingActivity.this, "Nope, fill two first lines", Toast.LENGTH_SHORT).show();
+                        }else Toast.makeText(WordActivity.this, "Nope, fill two first lines", Toast.LENGTH_SHORT).show();
                                                                                                     //just another way to imitate human
                     }
                 });

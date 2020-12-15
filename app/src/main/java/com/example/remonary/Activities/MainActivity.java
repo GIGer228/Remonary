@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         newWordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent newWordIntent = new Intent(MainActivity.this, WordEditingActivity.class);
+                Intent newWordIntent = new Intent(MainActivity.this, WordActivity.class);
                 newWordIntent.putExtra(KEY_LAUNCHCODE, 0);                                    //set launch code - add word
                 startActivityForResult(newWordIntent, RC_ADDNEWWORD);                               //and launch EditWordActivity
             }
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Bundle extras = data.getExtras();
         if(requestCode == RC_ADDNEWWORD && resultCode == Activity.RESULT_OK) {
-            WordElement userWord = (WordElement)extras.get(WordEditingActivity.KEY_NEW_WORD);       //get new word from EditWordActivity
+            WordElement userWord = (WordElement)extras.get(WordActivity.KEY_NEW_WORD);       //get new word from EditWordActivity
 
             userDictionary.add(userWord);                                                           //add new word to userDictionary
             userDictionary.sort(wordComparator);                                                    //sort new word
