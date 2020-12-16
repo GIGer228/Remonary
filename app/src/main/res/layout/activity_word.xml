@@ -27,6 +27,7 @@
         app:layout_constraintTop_toBottomOf="@+id/activity_message"
         android:hint="Enter new word here" />
 
+
     <EditText
         android:id="@+id/new_translation_text"
         android:gravity="center_horizontal"

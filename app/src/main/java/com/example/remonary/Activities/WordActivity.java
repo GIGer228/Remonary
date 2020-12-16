@@ -32,6 +32,7 @@ public class WordActivity extends AppCompatActivity {
 
     static TextView activityMessage;
     static EditText wordTitle;
+    static EditText languageMark;
     static EditText wordTranslate;
     static EditText wordDescription;
 
@@ -48,6 +49,7 @@ public class WordActivity extends AppCompatActivity {
         activityMessage = findViewById(R.id.activity_message);                                      //WordActivity welcome line
 
         wordTitle = findViewById(R.id.new_word_text);
+        languageMark = findViewById(R.id.language_mark);
         wordTranslate = findViewById(R.id.new_translation_text);
         wordDescription = findViewById(R.id.new_description_text);
 
@@ -66,13 +68,15 @@ public class WordActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         boolean hasTitle = !wordTitle.getText().toString().equals("");              //incorrect WordElement condition
                         boolean hasTranslate = !wordTranslate.getText().toString().equals("");      //same as above, but not
+                        boolean hasMark = !languageMark.getText().toString().equals("");
 
-                        if(hasTitle && hasTranslate){
+                        if(hasTitle && hasTranslate && hasMark){
                             Intent resultIntent = new Intent();
                             WordElement newWord = new WordElement();
                             newWord.setId((long)random.nextLong()*34/random.nextLong());            //create new word
 
                             newWord.setTitle(wordTitle.getText().toString());                       //get user data
+                            newWord.setLanguageMark(languageMark.getText().toString());
                             newWord.setTranslate(wordTranslate.getText().toString());               //and set it
                             newWord.setDescription(wordDescription.getText().toString());           //in new WordElement
 
@@ -81,7 +85,7 @@ public class WordActivity extends AppCompatActivity {
 
                             Toast.makeText(WordActivity.this, "Hmm... How interesting", LENGTH_SHORT).show();
                             finish();                                                               //human imitation. Just kidding
-                        }else Toast.makeText(WordActivity.this, "Nope, fill two first lines", LENGTH_SHORT).show();
+                        }else Toast.makeText(WordActivity.this, "Nope, fill three first lines", LENGTH_SHORT).show();
                     }
                 });                                                                                 //another human imitation
 
@@ -102,6 +106,7 @@ public class WordActivity extends AppCompatActivity {
                         .getExtras().get(DictionaryActivity.KEY_CLICKWORD);                         //(edit source/link)
 
                 wordTitle.setText(clickWord.getTitle());                                            //get click word data
+                languageMark.setText(clickWord.getLanguageMark());
                 wordTranslate.setText(clickWord.getTranslate());                                    //set it to EditText fields
                 wordDescription.setText((clickWord.getDescription()));                              //and so display to user
 
@@ -110,14 +115,16 @@ public class WordActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         boolean hasTitle = !wordTitle.getText().toString().equals("");              //incorrect WordElement condition
                         boolean hasTranslate = !wordTranslate.getText().toString().equals("");      //same as above, but second
+                        boolean hasMark = !languageMark.getText().toString().equals("");
 
-                        if(hasTitle && hasTranslate){
+                        if(hasTitle && hasTranslate && hasMark){
                             Intent resultIntent = new Intent();
 
                             WordElement userEdit = new WordElement();                               //create new word
                             userEdit.setId((long)random.nextLong()*34/random.nextLong());           //set random Id(make it better)
 
                             userEdit.setTitle(wordTitle.getText().toString());                      //get edited data
+                            userEdit.setLanguageMark(languageMark.getText().toString());
                             userEdit.setTranslate(wordTranslate.getText().toString());              //and set it
                             userEdit.setDescription(wordDescription.getText().toString());          //to new WordElement
 
@@ -167,10 +174,12 @@ public class WordActivity extends AppCompatActivity {
             final String title = target.getTitle();
             final String translate = target.getTranslate();
             String description = target.getDescription();
+            String mark = target.getLanguageMark();
 
             double weight = target.getWeight();
             final double reward = weight / 10;
 
+            languageMark.setText(mark);
             wordDescription.setText(description);
             wordDescription.setVisibility(View.INVISIBLE);
             confirmButton.setText("Answer");
