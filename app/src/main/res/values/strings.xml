@@ -4,4 +4,6 @@
     <string name="add_button_text">Yes, add this pls:)</string>
     <string name="edit_word_line">See, you wrote this</string>
     <string name="edit_button_text">Keep changes</string>
+    <string name="title_quest">What was the word?</string>
+    <string name="translate_wuest">How to translate this?</string>
 </resources>
