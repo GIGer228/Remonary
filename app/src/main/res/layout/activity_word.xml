@@ -27,13 +27,24 @@
         app:layout_constraintTop_toBottomOf="@+id/activity_message"
         android:hint="Enter new word here" />
 
+
+    <EditText
+        android:id="@+id/language_mark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="It's language"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_word_text" />
+
     <EditText
         android:id="@+id/new_translation_text"
-        android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/new_word_text"
-        android:hint="And it's translation here" />
+        android:gravity="center_horizontal"
+        android:hint="And it's translation here"
+        app:layout_constraintTop_toBottomOf="@+id/language_mark" />
 
     <EditText
         android:id="@+id/new_description_text"
