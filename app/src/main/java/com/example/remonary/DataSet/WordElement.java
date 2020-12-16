@@ -9,18 +9,34 @@ public class WordElement implements Serializable{
     String translate;
     String description;
 
+    double weight;
+
     public WordElement() {
     }
 
     public WordElement(long id){
         this.id = id;
+        this.weight = 0;
     }
 
-    public WordElement(long id, String title, String translate, String description) {
+    public WordElement(long id, String title, String translate, String description, double weight) {
         this.id = id;
         this.title = title;
         this.translate = translate;
         this.description = description;
+        this.weight = weight;
+    }
+
+    public WordElement(String title, String translate, String description) {
+        this.title = title;
+        this.translate = translate;
+        this.description = description;
+        this.weight = 0;
+    }
+
+    public WordElement(String title, String translate) {
+        this.title = title;
+        this.translate = translate;
     }
 
     public void setId(long id) {
@@ -35,6 +51,9 @@ public class WordElement implements Serializable{
     public void setDescription(String description) {
         this.description = description;
     }
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
 
     public long getId(){ return id; }
     public String getTitle() {
@@ -45,6 +64,9 @@ public class WordElement implements Serializable{
     }
     public String getDescription() {
         return description;
+    }
+    public double getWeight() {
+        return weight;
     }
 
     @Override
