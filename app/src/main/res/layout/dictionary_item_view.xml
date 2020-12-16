@@ -18,6 +18,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/word_language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="language"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/word_description"
+        app:layout_constraintEnd_toStartOf="@+id/word_translate"
+        app:layout_constraintStart_toEndOf="@+id/word_title" />
+
+
+    <TextView
         android:id="@+id/word_translate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -12,6 +12,7 @@ import com.example.remonary.DataSet.WordElement;
 public class WordViewHolder extends RecyclerView.ViewHolder {
 
     private TextView wordTitle;
+    private TextView languageMark;
     private TextView wordTranslate;
     private TextView wordDescription;
 
@@ -19,6 +20,7 @@ public class WordViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
 
         wordTitle = itemView.findViewById(R.id.word_title);
+        languageMark = itemView.findViewById(R.id.word_language);
         wordTranslate = itemView.findViewById(R.id.word_translate);
         wordDescription = itemView.findViewById(R.id.word_description);
 
@@ -35,6 +37,7 @@ public class WordViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(WordElement word){
         wordTitle.setText(word.getTitle());
+        languageMark.setText(word.getLanguageMark());
         wordTranslate.setText(word.getTranslate());
         wordDescription.setText(word.getDescription());
     }
