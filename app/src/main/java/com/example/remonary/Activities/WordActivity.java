@@ -179,9 +179,9 @@ public class WordActivity extends AppCompatActivity {
             double weight = target.getWeight();
             final double reward = weight / 10;
 
+            languageMark.setText(mark);
             wordDescription.setText(description);
             wordDescription.setVisibility(View.INVISIBLE);
-            languageMark.setText(mark);
             confirmButton.setText("Answer");
             closeButton.setText("Keep silent");
 

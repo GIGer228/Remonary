@@ -6,18 +6,13 @@ public class WordElement implements Serializable{
 
     long id;
     String title;
+    String languageMark;
     String translate;
     String description;
-    String languageMark;
 
     double weight;
 
     public WordElement() {
-    }
-
-    public WordElement(long id){
-        this.id = id;
-        this.weight = 0;
     }
 
     public WordElement(long id, String title, String translate, String description, double weight) {
@@ -28,25 +23,14 @@ public class WordElement implements Serializable{
         this.weight = weight;
     }
 
-    public WordElement(String title, String translate, String description, String languageMark) {
-        this.title = title;
-        this.translate = translate;
-        this.description = description;
-        this.weight = 0;
-        this.languageMark = languageMark;
-    }
-
-    public WordElement(String title, String translate, String languageMark) {
-        this.title = title;
-        this.translate = translate;
-        this.languageMark = languageMark;
-    }
-
     public void setId(long id) {
         this.id = id;
     }
     public void setTitle(String title) {
         this.title = title;
+    }
+    public void setLanguageMark(String languageMark) {
+        this.languageMark = languageMark;
     }
     public void setTranslate(String translate) {
         this.translate = translate;
@@ -57,13 +41,13 @@ public class WordElement implements Serializable{
     public void setWeight(double weight) {
         this.weight = weight;
     }
-    public void setLanguageMark(String languageMark) {
-        this.languageMark = languageMark;
-    }
 
     public long getId(){ return id; }
     public String getTitle() {
         return title;
+    }
+    public String getLanguageMark() {
+        return languageMark;
     }
     public String getTranslate() {
         return translate;
@@ -73,9 +57,6 @@ public class WordElement implements Serializable{
     }
     public double getWeight() {
         return weight;
-    }
-    public String getLanguageMark() {
-        return languageMark;
     }
 
     @Override
