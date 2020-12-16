@@ -15,9 +15,10 @@ public class WordElement implements Serializable{
     public WordElement() {
     }
 
-    public WordElement(long id, String title, String translate, String description, double weight) {
+    public WordElement(long id, String title, String languageMark, String translate, String description, double weight) {
         this.id = id;
         this.title = title;
+        this.languageMark = languageMark;
         this.translate = translate;
         this.description = description;
         this.weight = weight;

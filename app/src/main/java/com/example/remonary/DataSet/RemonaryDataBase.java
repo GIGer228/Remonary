@@ -21,6 +21,7 @@ public class RemonaryDataBase extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE WordElement(" +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "title TEXT, " +
+                "language TEXT, " +
                 "translate TEXT, " +
                 "description TEXT, " +
                 "weight REAL" +
@@ -37,6 +38,7 @@ public class RemonaryDataBase extends SQLiteOpenHelper {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put("title", word.getTitle());
+        contentValues.put("language", word.getLanguageMark());
         contentValues.put("translate", word.getTranslate());
         contentValues.put("description", word.getDescription());
         contentValues.put("weight", word.getWeight());
@@ -56,6 +58,7 @@ public class RemonaryDataBase extends SQLiteOpenHelper {
         return new WordElement(
                 cursor.getLong(cursor.getColumnIndex("_id")),
                 cursor.getString(cursor.getColumnIndex("title")),
+                cursor.getString(cursor.getColumnIndex("language")),
                 cursor.getString(cursor.getColumnIndex("translate")),
                 cursor.getString(cursor.getColumnIndex("description")),
                 cursor.getDouble(cursor.getColumnIndex("weight")));
