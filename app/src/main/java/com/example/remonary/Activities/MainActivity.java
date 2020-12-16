@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.remonary.DataSet.RemonaryDataBase;
 import com.example.remonary.DataSet.WordComparator;
 import com.example.remonary.DataSet.WordElement;
 import com.example.remonary.R;
@@ -20,15 +21,16 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private RemonaryDataBase memory = new RemonaryDataBase(this);
     private static List<WordElement> userDictionary = new ArrayList<>();                            //all the words added by user
     private static WordComparator wordComparator;                                                   //dictionary sorter
 
     public static final int RC_ADDNEWWORD = 1030;                                                   //EditWordActivity's request code (add words)
-    public static final int RC_SEEDICTIONARY = 1090;                                                //DictionaryActivity's request code (show words)
 
     public static final String KEY_USERDATA = "user_data";                                          //String key for delivering words between Activities
     public static final String KEY_LAUNCHCODE = "launch_code";                                      //String key for EditActivity launch code (add/edit word)
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
         wordComparator = new WordComparator();
 
+        userDictionary = memory.getAllWords();
+        userDictionary.sort(wordComparator);
+
         newWordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent dictionaryIntent = new Intent(MainActivity.this, DictionaryActivity.class);
                 dictionaryIntent.putExtra(KEY_USERDATA, (Serializable) userDictionary);             //pack userDictionary
-                startActivityForResult(dictionaryIntent, RC_SEEDICTIONARY);                         //and launch DictionaryActivity
+                startActivity(dictionaryIntent);                                                    //and launch DictionaryActivity
             }
         });
 
@@ -84,20 +89,24 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onPause() {
+        memory.clearDataBase();
+        for(WordElement word : userDictionary)memory.putWordElement(word);
+        super.onPause();
+    }
+
     @SuppressLint("NewApi")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Bundle extras = data.getExtras();
         if(requestCode == RC_ADDNEWWORD && resultCode == Activity.RESULT_OK) {
-            WordElement userWord = (WordElement)extras.get(WordActivity.KEY_NEW_WORD);       //get new word from EditWordActivity
+            WordElement userWord = (WordElement)extras.get(WordActivity.KEY_NEW_WORD);              //get new word from EditWordActivity
 
             userDictionary.add(userWord);                                                           //add new word to userDictionary
             userDictionary.sort(wordComparator);                                                    //sort new word
-        }else
-            if (requestCode == RC_SEEDICTIONARY && resultCode == Activity.RESULT_OK){
-                userDictionary = (List<WordElement>)extras.get(KEY_USERDATA);                       //get & set new Dictionary
-                userDictionary.sort(wordComparator);                                                //then sort new Dictionary
-            }else super.onActivityResult(requestCode, resultCode, data);
+        }else super.onActivityResult(requestCode, resultCode, data);
     }
 
     @SuppressLint("NewApi")
